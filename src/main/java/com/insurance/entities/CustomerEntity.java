@@ -18,17 +18,6 @@ import javax.persistence.Table;
 @Table(name = "Customer")
 public class CustomerEntity {
 
-//			create table Customer(
-//			id bigint not null auto_increment primary key,
-//			Primary_Holder_Name varchar(100) not null,
-//			License_No varchar(40) not null,
-//			Email varchar(100) not null,
-//			Phone varchar(20) not null,
-//			Gender varchar(20),
-//			Last_four_Digit_SSN varchar(10) not null,
-//			Date_of_Birth date not null
-//			);
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -54,10 +43,10 @@ public class CustomerEntity {
 	@Column(name = "Date_of_Birth")
 	private Date dob;
 
-	@OneToMany(mappedBy = "customerEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<PolicyEntity> policyEntity;
 
-	@OneToMany(mappedBy = "customerEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customera", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<AddressEntity> addressEntity;
 
 	public long getId() {
@@ -124,27 +113,27 @@ public class CustomerEntity {
 		this.dob = dob;
 	}
 
-//	public PolicyEntity getPolicyEntity() {
-//		return policyEntity;
-//	}
-//
-//	public void setPolicyEntity(PolicyEntity policyEntity) {
-//		this.policyEntity = policyEntity;
-//	}
-//
-//	public List<AddressEntity> getAddressEntity() {
-//		return addressEntity;
-//	}
-//
-//	public void setAddressEntity(List<AddressEntity> addressEntity) {
-//		this.addressEntity = addressEntity;
-//	}
-//
-//	@Override
-//	public String toString() {
-//		return "CustomerEntity [id=" + id + ", name=" + name + ", licenseNo=" + licenseNo + ", email=" + email
-//				+ ", phone=" + phone + ", gender=" + gender + ", ssn=" + ssn + ", dob=" + dob + ", policyEntity="
-//				+ policyEntity + ", addressEntity=" + addressEntity + "]";
-//	}
+	public List<PolicyEntity> getPolicyEntity() {
+		return policyEntity;
+	}
+
+	public void setPolicyEntity(List<PolicyEntity> policyEntity) {
+		this.policyEntity = policyEntity;
+	}
+
+	public List<AddressEntity> getAddressEntity() {
+		return addressEntity;
+	}
+
+	public void setAddressEntity(List<AddressEntity> addressEntity) {
+		this.addressEntity = addressEntity;
+	}
+
+	@Override
+	public String toString() {
+		return "CustomerEntity [id=" + id + ", name=" + name + ", licenseNo=" + licenseNo + ", email=" + email
+				+ ", phone=" + phone + ", gender=" + gender + ", ssn=" + ssn + ", dob=" + dob + ", policyEntity="
+				+ policyEntity + ", addressEntity=" + addressEntity + "]";
+	}
 
 }

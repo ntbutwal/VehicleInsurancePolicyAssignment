@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -18,16 +19,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Ploicy")
 public class PolicyEntity {
-
-//	create table Policy(
-//	id bigint not null auto_increment primary key,
-//	Type varchar(50) not null,
-//	Policy_No varchar(50) not null,
-//	Start_Date date not null,
-//	Expiry_date date not null,
-//	Customer_Id bigint not null,
-//	Is_Active boolean,
-//	foreign key(Customer_Id) references Customer(id)
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,15 +39,15 @@ public class PolicyEntity {
 	@Column(name = "Is_Active")
 	private boolean isActive;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "Customer_Id")
-	private CustomerEntity customerEntity;
+	private CustomerEntity customer;
 
-	@OneToMany(mappedBy = "policyEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<AdditionalDriversEntity> driversEntity;
+	@OneToMany(mappedBy = "policy", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<AdditionalDriversEntity> drivers;
 
-	@OneToMany(mappedBy = "policyEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<CoveredVehicleEntity> vehicleEntities;
+	@OneToMany(mappedBy = "policyv", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<CoveredVehicleEntity> vehicle;
 
 	public long getId() {
 		return id;
@@ -106,35 +97,35 @@ public class PolicyEntity {
 		this.isActive = isActive;
 	}
 
-	public CustomerEntity getCustomerEntity() {
-		return customerEntity;
+	public CustomerEntity getCustomer() {
+		return customer;
 	}
 
-	public void setCustomerEntity(CustomerEntity customerEntity) {
-		this.customerEntity = customerEntity;
+	public void setCustomer(CustomerEntity customer) {
+		this.customer = customer;
 	}
 
-	public List<AdditionalDriversEntity> getDriversEntity() {
-		return driversEntity;
+	public List<AdditionalDriversEntity> getDrivers() {
+		return drivers;
 	}
 
-	public void setDriversEntity(List<AdditionalDriversEntity> driversEntity) {
-		this.driversEntity = driversEntity;
+	public void setDrivers(List<AdditionalDriversEntity> drivers) {
+		this.drivers = drivers;
 	}
 
-	public List<CoveredVehicleEntity> getVehicleEntities() {
-		return vehicleEntities;
+	public List<CoveredVehicleEntity> getVehicle() {
+		return vehicle;
 	}
 
-	public void setVehicleEntities(List<CoveredVehicleEntity> vehicleEntities) {
-		this.vehicleEntities = vehicleEntities;
+	public void setVehicle(List<CoveredVehicleEntity> vehicle) {
+		this.vehicle = vehicle;
 	}
 
 	@Override
 	public String toString() {
 		return "PolicyEntity [id=" + id + ", type=" + type + ", policyNo=" + policyNo + ", startDate=" + startDate
-				+ ", expiryDate=" + expiryDate + ", isActive=" + isActive + ", customerEntity=" + customerEntity
-				+ ", driversEntity=" + driversEntity + ", vehicleEntities=" + vehicleEntities + "]";
+				+ ", expiryDate=" + expiryDate + ", isActive=" + isActive + ", customer=" + customer + ", drivers="
+				+ drivers + ", vehicle=" + vehicle + "]";
 	}
 
 }

@@ -8,23 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Covered_Vehicle")
 public class CoveredVehicleEntity {
-
-//			create table Covered_Vehicle(
-//			id bigint not null auto_increment primary key,
-//			VIN varchar(50) not null,
-//			Make varchar(40) not null,
-//			Model varchar(40) not null,
-//			Year varchar(10) not null,
-//			Is_Active boolean,
-//			Policy_Id bigint not null,
-//			foreign keyAdditional_Drivers(Policy_Id) references Policy(id)
-//			);
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,9 +35,9 @@ public class CoveredVehicleEntity {
 	@Column(name = "Is_Active")
 	private boolean isActive;
 
-	@OneToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Policy_Id")
-	private PolicyEntity policyEntity;
+	private PolicyEntity policyv;
 
 	public long getId() {
 		return id;
@@ -97,18 +87,16 @@ public class CoveredVehicleEntity {
 		this.isActive = isActive;
 	}
 
-	public PolicyEntity getPolicyEntity() {
-		return policyEntity;
+	public PolicyEntity getPolicy() {
+		return policy;
 	}
 
-	public void setPolicyEntity(PolicyEntity policyEntity) {
-		this.policyEntity = policyEntity;
+	public void setPolicy(PolicyEntity policy) {
+		this.policy = policy;
 	}
 
-	@Override
-	public String toString() {
-		return "CoveredVehicleEntity [id=" + id + ", vin=" + vin + ", make=" + make + ", model=" + model + ", year="
-				+ year + ", isActive=" + isActive + ", policyEntity=" + policyEntity + "]";
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 }

@@ -9,32 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 import com.insurance.entities.AdditionalDriversEntity;
 import com.insurance.entities.AddressEntity;
 import com.insurance.entities.CoveredVehicleEntity;
+import com.insurance.entities.CustomerEntity;
 import com.insurance.entities.PolicyEntity;
 
 @Repository
 @Transactional
-public class SaveAllEntityRepository {
+public class CustomerRepository {
 
 	private EntityManager entityManager;
 
-	public void saveAllEntities(CoveredVehicleEntity ce) {
+	public void saveCustomerEntity(CustomerEntity ce) {
 
 		entityManager.persist(ce);
-
-	}
-	public void saveAllEntities1(AdditionalDriversEntity ade) {
-
-		entityManager.persist(ade);
-
-	}
-	public void saveAllEntities2(AddressEntity add) {
-
-		entityManager.persist(add);
-
-	}
-	public void saveAllEntities3(PolicyEntity pol) {
-
-		entityManager.persist(pol);
 
 	}
 

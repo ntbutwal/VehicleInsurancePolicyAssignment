@@ -7,25 +7,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 public class AddressEntity {
 
-//			create table Address(
-//			id bigint not null auto_increment primary key,
-//			Street_Line1 varchar(100) not null,
-//			Street_Line2 varchar(100),
-//			City varchar(40),
-//			State varchar(50),
-//			Zip varchar(10),
-//			Customer_Id bigint not null,
-//			foreign key(Customer_Id) references Customer(id)
-//			);
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@Column(name = "Street_Line1")
 	private String line1;
 
@@ -41,9 +31,9 @@ public class AddressEntity {
 	@Column(name = "Zip")
 	private String zip;
 
-	@OneToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Customer_Id")
-	private CustomerEntity customerEntity;
+	private CustomerEntity customera;
 
 	public long getId() {
 		return id;
@@ -93,18 +83,18 @@ public class AddressEntity {
 		this.zip = zip;
 	}
 
-	public CustomerEntity getCustomerEntity() {
-		return customerEntity;
+	public CustomerEntity getCustomer() {
+		return customer;
 	}
 
-	public void setCustomerEntity(CustomerEntity customerEntity) {
-		this.customerEntity = customerEntity;
+	public void setCustomer(CustomerEntity customer) {
+		this.customer = customer;
 	}
 
 	@Override
 	public String toString() {
 		return "AddressEntity [id=" + id + ", line1=" + line1 + ", line2=" + line2 + ", city=" + city + ", state="
-				+ state + ", zip=" + zip + ", customerEntity=" + customerEntity + "]";
+				+ state + ", zip=" + zip + ", customer=" + customer + "]";
 	}
 
 }

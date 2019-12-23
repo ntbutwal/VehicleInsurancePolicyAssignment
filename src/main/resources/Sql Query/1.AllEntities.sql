@@ -6,7 +6,7 @@ Type varchar(50) not null,
 Policy_No varchar(50) not null,
 Start_Date date not null,
 Expiry_date date not null,
-Customer_Id bigint not null,
+Customer_Id bigint,
 Is_Active boolean,
 foreign key(Customer_Id) references Customer(id)
 );
@@ -29,7 +29,7 @@ Street_Line2 varchar(100),
 City varchar(40),
 State varchar(50),
 Zip varchar(10),
-Customer_Id bigint not null,
+Customer_Id bigint,
 foreign key(Customer_Id) references Customer(id)
 );
 
@@ -39,7 +39,7 @@ Additional_Drive_Name varchar(100) not null,
 License_No varchar(40) not null,
 Issued_State varchar(20) not null,
 Is_Active boolean,
-Policy_Id bigint not null,
+Policy_Id bigint,
 foreign key(Policy_Id) references Policy(id)
 );
 
@@ -50,7 +50,7 @@ Make varchar(40) not null,
 Model varchar(40) not null,
 Year varchar(10) not null,
 Is_Active boolean,
-Policy_Id bigint not null,
-foreign keyAdditional_Drivers(Policy_Id) references Policy(id)
+Policy_Id bigint,
+foreign key (Policy_Id) references Policy(id)
 );
 

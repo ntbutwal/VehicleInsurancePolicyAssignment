@@ -8,22 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Additional_Drivers")
 public class AdditionalDriversEntity {
-
-//			create table Additional_Drivers(
-//			id bigint not null auto_increment primary key,
-//			Additional_Drive_Name varchar(100) not null,
-//			License_No varchar(40) not null,
-//			Issued_State varchar(20) not null,
-//			Is_Active boolean,
-//			Policy_Id bigint not null,
-//			foreign key(Policy_Id) references Policy(id)
-//			);
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,9 +32,9 @@ public class AdditionalDriversEntity {
 	@Column(name = "Is_Active")
 	private boolean isActive;
 
-	@OneToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Policy_Id")
-	private PolicyEntity policyEntity;
+	private PolicyEntity policy;
 
 	public long getId() {
 		return id;
@@ -85,18 +76,18 @@ public class AdditionalDriversEntity {
 		this.isActive = isActive;
 	}
 
-	public PolicyEntity getPolicyEntity() {
-		return policyEntity;
+	public PolicyEntity getPolicy() {
+		return policy;
 	}
 
-	public void setPolicyEntity(PolicyEntity policyEntity) {
-		this.policyEntity = policyEntity;
+	public void setPolicy(PolicyEntity policy) {
+		this.policy = policy;
 	}
 
 	@Override
 	public String toString() {
 		return "AdditionalDriversEntity [id=" + id + ", name=" + name + ", licenseNo=" + licenseNo + ", issuedState="
-				+ issuedState + ", isActive=" + isActive + ", policyEntity=" + policyEntity + "]";
+				+ issuedState + ", isActive=" + isActive + ", policy=" + policy + "]";
 	}
 
 }
