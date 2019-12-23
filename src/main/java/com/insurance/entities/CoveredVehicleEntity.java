@@ -87,16 +87,22 @@ public class CoveredVehicleEntity {
 		this.isActive = isActive;
 	}
 
-	public PolicyEntity getPolicy() {
-		return policy;
-	}
-
-	public void setPolicy(PolicyEntity policy) {
-		this.policy = policy;
-	}
-
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public PolicyEntity getPolicyv() {
+		return policyv;
+	}
+
+	public void setPolicyv(PolicyEntity policyv) {
+		this.policyv = policyv;
+	}
+
+	@Override
+	public String toString() {
+		return "CoveredVehicleEntity [id=" + id + ", vin=" + vin + ", make=" + make + ", model=" + model + ", year="
+				+ year + ", isActive=" + isActive + ", policyv=" + policyv + "]";
 	}
 
 }

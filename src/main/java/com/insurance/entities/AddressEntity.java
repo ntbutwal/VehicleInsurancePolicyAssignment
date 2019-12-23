@@ -83,18 +83,18 @@ public class AddressEntity {
 		this.zip = zip;
 	}
 
-	public CustomerEntity getCustomer() {
-		return customer;
+	public CustomerEntity getCustomera() {
+		return customera;
 	}
 
-	public void setCustomer(CustomerEntity customer) {
-		this.customer = customer;
+	public void setCustomera(CustomerEntity customera) {
+		this.customera = customera;
 	}
 
 	@Override
 	public String toString() {
 		return "AddressEntity [id=" + id + ", line1=" + line1 + ", line2=" + line2 + ", city=" + city + ", state="
-				+ state + ", zip=" + zip + ", customer=" + customer + "]";
+				+ state + ", zip=" + zip + ", customera=" + customera + "]";
 	}
 
 }
