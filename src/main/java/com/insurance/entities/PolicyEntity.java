@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Ploicy")
+@Table(name = "Policy")
 public class PolicyEntity {
 
 	@Id
@@ -39,14 +39,14 @@ public class PolicyEntity {
 	@Column(name = "Is_Active")
 	private boolean isActive;
 
-	@ManyToOne
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Customer_Id")
 	private CustomerEntity customer;
 
-	@OneToMany(mappedBy = "policy", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "policy", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<AdditionalDriversEntity> drivers;
 
-	@OneToMany(mappedBy = "policyv", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "policyVeh", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<CoveredVehicleEntity> vehicle;
 
 	public long getId() {
@@ -124,8 +124,8 @@ public class PolicyEntity {
 	@Override
 	public String toString() {
 		return "PolicyEntity [id=" + id + ", type=" + type + ", policyNo=" + policyNo + ", startDate=" + startDate
-				+ ", expiryDate=" + expiryDate + ", isActive=" + isActive + ", customer=" + customer + ", drivers="
-				+ drivers + ", vehicle=" + vehicle + "]";
+				+ ", expiryDate=" + expiryDate + ", isActive=" + isActive + ", customer=" + customer + ", vehicle="
+				+ vehicle + "]";
 	}
 
 }

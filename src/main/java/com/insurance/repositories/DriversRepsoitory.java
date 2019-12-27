@@ -7,25 +7,15 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.insurance.entities.AdditionalDriversEntity;
-import com.insurance.entities.AddressEntity;
-import com.insurance.entities.CoveredVehicleEntity;
-import com.insurance.entities.CustomerEntity;
-import com.insurance.entities.PolicyEntity;
 
 @Repository
 @Transactional
-public class CustomerRepository {
+public class DriversRepsoitory {
 
 	private EntityManager entityManager;
 
-	public void saveCustomerEntity(CustomerEntity ce) {
-
-		entityManager.persist(ce);
-
-	}
-
-	public CustomerEntity findById(Long id) {
-		return entityManager.find(CustomerEntity.class, id);
+	public void saveDriverEntity(AdditionalDriversEntity driver) {
+		entityManager.merge(driver);
 	}
 
 	public EntityManager getEntityManager() {

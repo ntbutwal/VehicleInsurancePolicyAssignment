@@ -2,6 +2,7 @@ package com.insurance.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Address")
 public class AddressEntity {
 
 	@Id
@@ -31,9 +35,9 @@ public class AddressEntity {
 	@Column(name = "Zip")
 	private String zip;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Customer_Id")
-	private CustomerEntity customera;
+	private CustomerEntity customeradd;
 
 	public long getId() {
 		return id;
@@ -83,18 +87,18 @@ public class AddressEntity {
 		this.zip = zip;
 	}
 
-	public CustomerEntity getCustomera() {
-		return customera;
+	public CustomerEntity getCustomeradd() {
+		return customeradd;
 	}
 
-	public void setCustomera(CustomerEntity customera) {
-		this.customera = customera;
+	public void setCustomeradd(CustomerEntity customeradd) {
+		this.customeradd = customeradd;
 	}
 
 	@Override
 	public String toString() {
 		return "AddressEntity [id=" + id + ", line1=" + line1 + ", line2=" + line2 + ", city=" + city + ", state="
-				+ state + ", zip=" + zip + ", customera=" + customera + "]";
+				+ state + ", zip=" + zip + "]";
 	}
 
 }

@@ -2,30 +2,31 @@ package com.insurance.repositories;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.insurance.entities.AdditionalDriversEntity;
-import com.insurance.entities.AddressEntity;
 import com.insurance.entities.CoveredVehicleEntity;
-import com.insurance.entities.CustomerEntity;
-import com.insurance.entities.PolicyEntity;
 
 @Repository
 @Transactional
-public class CustomerRepository {
-
+public class VehicleRepository {
 	private EntityManager entityManager;
 
-	public void saveCustomerEntity(CustomerEntity ce) {
-
-		entityManager.persist(ce);
+	public void saveVehicleData(CoveredVehicleEntity cve) {
+		entityManager.merge(cve);
 
 	}
 
-	public CustomerEntity findById(Long id) {
-		return entityManager.find(CustomerEntity.class, id);
+	public CoveredVehicleEntity findbyVin(String vin) {
+
+		String hql = "select c from CoveredVehicleEntity c where vin=:no";
+		Query query = entityManager.createQuery(hql);
+		query.setParameter("no", vin);
+		CoveredVehicleEntity cve = (CoveredVehicleEntity) query.getSingleResult();
+		return cve;
+
 	}
 
 	public EntityManager getEntityManager() {

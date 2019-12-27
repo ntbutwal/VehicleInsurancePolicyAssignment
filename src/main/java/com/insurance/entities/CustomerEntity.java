@@ -43,10 +43,10 @@ public class CustomerEntity {
 	@Column(name = "Date_of_Birth")
 	private Date dob;
 
-	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<PolicyEntity> policyEntity;
 
-	@OneToMany(mappedBy = "customera", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customeradd", cascade = CascadeType.ALL)
 	private List<AddressEntity> addressEntity;
 
 	public long getId() {
@@ -132,8 +132,7 @@ public class CustomerEntity {
 	@Override
 	public String toString() {
 		return "CustomerEntity [id=" + id + ", name=" + name + ", licenseNo=" + licenseNo + ", email=" + email
-				+ ", phone=" + phone + ", gender=" + gender + ", ssn=" + ssn + ", dob=" + dob + ", policyEntity="
-				+ policyEntity + ", addressEntity=" + addressEntity + "]";
+				+ ", phone=" + phone + ", gender=" + gender + ", ssn=" + ssn + ", dob=" + dob + "]";
 	}
 
 }

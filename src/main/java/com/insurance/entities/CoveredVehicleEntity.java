@@ -35,9 +35,9 @@ public class CoveredVehicleEntity {
 	@Column(name = "Is_Active")
 	private boolean isActive;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "Policy_Id")
-	private PolicyEntity policyv;
+	private PolicyEntity policyVeh;
 
 	public long getId() {
 		return id;
@@ -87,22 +87,19 @@ public class CoveredVehicleEntity {
 		this.isActive = isActive;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public PolicyEntity getPolicyVeh() {
+		return policyVeh;
 	}
 
-	public PolicyEntity getPolicyv() {
-		return policyv;
-	}
-
-	public void setPolicyv(PolicyEntity policyv) {
-		this.policyv = policyv;
+	public void setPolicyVeh(PolicyEntity policyVeh) {
+		this.policyVeh = policyVeh;
 	}
 
 	@Override
 	public String toString() {
 		return "CoveredVehicleEntity [id=" + id + ", vin=" + vin + ", make=" + make + ", model=" + model + ", year="
-				+ year + ", isActive=" + isActive + ", policyv=" + policyv + "]";
+				+ year + ", isActive=" + isActive + "]";
 	}
 
+	
 }

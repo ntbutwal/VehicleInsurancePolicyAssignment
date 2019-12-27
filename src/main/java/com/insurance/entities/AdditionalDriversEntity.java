@@ -87,7 +87,7 @@ public class AdditionalDriversEntity {
 	@Override
 	public String toString() {
 		return "AdditionalDriversEntity [id=" + id + ", name=" + name + ", licenseNo=" + licenseNo + ", issuedState="
-				+ issuedState + ", isActive=" + isActive + ", policy=" + policy + "]";
+				+ issuedState + ", isActive=" + isActive + "]";
 	}
 
 }
