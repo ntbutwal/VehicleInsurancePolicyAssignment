@@ -19,19 +19,19 @@ public class InsertCustomerEntityMain {
 		CustomerRepository rep = (CustomerRepository) context.getBean("customerRepository");
 
 		Calendar cal2 = Calendar.getInstance();
-		cal2.set(Calendar.YEAR, 1998);
+		cal2.set(Calendar.YEAR, 194);
 		cal2.set(Calendar.MONTH, 4);
-		cal2.set(Calendar.DAY_OF_MONTH, 1);
+		cal2.set(Calendar.DAY_OF_MONTH, 12);
 		Date dob = cal2.getTime();
 
 		CustomerEntity cus = new CustomerEntity();
 		cus.setDob(dob);
-		cus.setEmail("ntbutwal@gmail.com");
+		cus.setEmail("Jay.joshi@gmail.com");
 		cus.setGender("Male");
-		cus.setLicenseNo("VA37489893");
-		cus.setName("Kishor Kunwar");
-		cus.setPhone("7032203541");
-		cus.setSsn("1111");
+		cus.setLicenseNo("VA37478373");
+		cus.setName("Jay Joshi");
+		cus.setPhone("2042203541");
+		cus.setSsn("3333");
 		rep.saveCustomerEntity(cus);
 
 	}

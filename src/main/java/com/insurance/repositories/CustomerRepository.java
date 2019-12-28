@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.insurance.entities.CustomerEntity;
 
-
 @Repository
 @Transactional
 public class CustomerRepository {
